@@ -23,21 +23,21 @@ public class PasswordPolicy extends Requirement {
 
     @Override
     public CheckStatus check() {
-        if (password == null || password.isEmpty()) return CheckStatus.INCOMPLETE;
+         if !isEmpty()  return CheckStatus.INCOMPLETE;
 
-        if (!isLengthValid()) return CheckStatus.FAIL;
-        if (!hasUppercase()) return CheckStatus.FAIL;
-        if (!hasLowercase()) return CheckStatus.FAIL;
-        if (!hasDigit()) return CheckStatus.FAIL;
-        if (!hasSpecialCharacter()) return CheckStatus.FAIL;
+        if (!isLengthValid() || !hasUppercase()) || !hasLowercase()|| !hasDigit()) || !hasSpecialCharacter()) return CheckStatus.FAIL;
 
         return CheckStatus.PASS;
     }
 
-    private boolean isLengthValid() {
+    private boolean isEmpty {
+        return (password == null || password.isEmpty());
+    }
+    
+     private boolean isLengthValid() {
         return password.length() >= 12;
     }
-
+    
     private boolean hasUppercase() {
         return Pattern.compile("[A-Z]").matcher(password).find();
     }
